@@ -54,19 +54,115 @@ const Chatbot = () => {
   const getBotResponse = (userInput) => {
     const input = userInput.toLowerCase();
     
-    if (input.includes('hello') || input.includes('hi')) {
-      return "Hello! How can I assist you today?";
-    } else if (input.includes('memory') || input.includes('memories')) {
-      return "I can help you with managing memories. You can add new memories, view existing ones, or organize them by date.";
-    } else if (input.includes('help')) {
-      return "I can help you with: \n1. Adding new memories\n2. Viewing existing memories\n3. Managing your account\n4. Understanding the features\nWhat would you like to know more about?";
-    } else if (input.includes('login') || input.includes('sign in')) {
-      return "To login, you can use your email and password. If you're a patient, use the patient login. If you're a family member, use the family login.";
-    } else if (input.includes('register') || input.includes('sign up')) {
-      return "You can register as either a patient or a family member. Patients can create and manage their memories, while family members can help manage a patient's memories.";
-    } else {
-      return "I'm here to help! You can ask me about:\n- How to use the memory features\n- Login and registration\n- Managing memories\n- Account settings\nWhat would you like to know?";
+    // Chatbot-specific questions
+    if (input.includes('chatbot') || 
+        (input.includes('what') && input.includes('you')) ||
+        (input.includes('who') && input.includes('you'))) {
+      return "I'm your Memory Assistant chatbot! I'm here to help you navigate and use the Memory Tracking application. I can:\n\n" +
+             "1. Explain how to use different features\n" +
+             "2. Guide you through creating and managing memories\n" +
+             "3. Help with account setup and management\n" +
+             "4. Explain how to connect with family members\n" +
+             "5. Answer questions about the app's features\n\n" +
+             "Feel free to ask me anything about the application!";
     }
+    
+    // Website purpose and features
+    if ((input.includes('what') && input.includes('website')) || 
+        (input.includes('what') && input.includes('app')) ||
+        input.includes('purpose')) {
+      return "This is a Memory Tracking application designed to help patients with memory-related conditions and their family members. It allows you to:\n\n" +
+             "1. Create and store memories (photos, voice recordings, text)\n" +
+             "2. Share memories with family members\n" +
+             "3. Track daily activities and routines\n" +
+             "4. Access a timeline of memories\n" +
+             "5. Connect with family members for support";
+    }
+    
+    // Memory features
+    if (input.includes('memory') || input.includes('memories')) {
+      return "You can create different types of memories:\n\n" +
+             "📸 Photo Memories: Upload and store photos with descriptions\n" +
+             "🎤 Voice Memories: Record voice messages\n" +
+             "📝 Text Memories: Write down your thoughts and experiences\n\n" +
+             "All memories can be tagged with locations and people, and organized in a timeline.";
+    }
+    
+    // Login/Registration help
+    if (input.includes('login') || input.includes('sign in')) {
+      return "To login to the Memory Tracking application:\n\n" +
+             "1. Click the 'Login' button in the top right corner\n" +
+             "2. Choose your account type (Patient or Family)\n" +
+             "3. Enter your email address\n" +
+             "4. Enter your password\n" +
+             "5. Click 'Sign In'\n\n" +
+             "If you've forgotten your password, you can click 'Forgot Password' to reset it.";
+    }
+    
+    if (input.includes('register') || input.includes('sign up')) {
+      return "To create a new account:\n\n" +
+             "1. Click the 'Sign Up' button\n" +
+             "2. Choose your account type:\n" +
+             "   👤 Patient Account: For tracking your own memories\n" +
+             "   👨‍👩‍👧‍👦 Family Account: For helping manage a patient's memories\n" +
+             "3. Fill in your personal information\n" +
+             "4. Create a secure password\n" +
+             "5. Click 'Create Account'";
+    }
+    
+    // Account management
+    if (input.includes('account') || input.includes('profile') || 
+        input.includes('settings')) {
+      return "In your account settings, you can:\n\n" +
+             "1. Update your personal information\n" +
+             "2. Manage privacy settings\n" +
+             "3. Connect with family members\n" +
+             "4. Set up emergency contacts\n" +
+             "5. Customize notification preferences";
+    }
+    
+    // Family features
+    if (input.includes('family') || input.includes('relative') || 
+        input.includes('caretaker')) {
+      return "As a family member, you can:\n\n" +
+             "1. View and help organize the patient's memories\n" +
+             "2. Add supportive comments and reactions\n" +
+             "3. Monitor daily activities\n" +
+             "4. Receive notifications about new memories\n" +
+             "5. Help maintain the memory timeline";
+    }
+    
+    // Help and support
+    if (input.includes('help') || input.includes('support') || 
+        input.includes('how')) {
+      return "I can help you with:\n\n" +
+             "1. Understanding the app's features\n" +
+             "2. Creating and managing memories\n" +
+             "3. Connecting with family members\n" +
+             "4. Using the timeline and calendar\n" +
+             "5. Setting up your account\n\n" +
+             "What would you like to know more about?";
+    }
+    
+    // Greetings
+    if (input.includes('hello') || input.includes('hi') || 
+        input.includes('hey')) {
+      return "Hello! I'm your Memory Assistant. I can help you with:\n\n" +
+             "1. Understanding how to use the app\n" +
+             "2. Creating and managing memories\n" +
+             "3. Connecting with family members\n" +
+             "4. Setting up your account\n\n" +
+             "What would you like to know?";
+    }
+    
+    // Default response
+    return "I'm here to help you with the Memory Tracking application. You can ask me about:\n\n" +
+           "1. How to create and manage memories\n" +
+           "2. Connecting with family members\n" +
+           "3. Using the timeline feature\n" +
+           "4. Setting up your account\n" +
+           "5. Privacy and security features\n\n" +
+           "What would you like to know more about?";
   };
 
   const handleKeyPress = (e) => {
